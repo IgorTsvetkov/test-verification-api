@@ -12,9 +12,10 @@ endpoints:
       subgroupDescription: ''
       title: ''
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Basic {YOUR_AUTH_KEY}'
       Content-Type: multipart/form-data
       Accept: application/json
     urlParameters: []
@@ -36,7 +37,10 @@ endpoints:
       file: null
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Basic Y1o0MWJnRGFWZjhQaDUzZDZhZWs2RXY='
     controller: null
     method: null
     route: null

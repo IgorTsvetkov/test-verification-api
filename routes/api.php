@@ -15,4 +15,4 @@ use App\Http\Controllers\API\FileVerificationController;
 |
 */
 
-Route::middleware('auth')->post('files/verification', FileVerificationController::class);
+Route::middleware('auth.basic')->post('files/verification', FileVerificationController::class);

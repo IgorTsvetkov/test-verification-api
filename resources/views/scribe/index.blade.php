@@ -26,7 +26,7 @@
             </style>
 
     <script>
-        var tryItOutBaseUrl = "http://localhost";
+        var tryItOutBaseUrl = "http://127.0.0.1:8000";
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
@@ -94,14 +94,18 @@
     <div class="content">
         <h1 id="introduction">Introduction</h1>
 <aside>
-    <strong>Base URL</strong>: <code>http://localhost</code>
+    <strong>Base URL</strong>: <code>http://127.0.0.1:8000</code>
 </aside>
 <p>This documentation aims to provide all the information you need to work with our API.</p>
 <aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
 You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
-<p>This API is not authenticated.</p>
+<p>To authenticate requests, include an <strong><code>Authorization</code></strong> header in the form <strong><code>"Basic {credentials}"</code></strong>.
+The value of <code>{credentials}</code> should be your username/id and your password, joined with a colon (:),
+and then base64-encoded.</p>
+<p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
+<p>You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.</p>
 
         <h1 id="endpoints">Endpoints</h1>
 
@@ -110,6 +114,7 @@ You can switch the language used with the tabs at the top right (or from the nav
                                 <h2 id="endpoints-POSTapi-files-verification">POST api/files/verification</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -120,18 +125,20 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/files/verification" \
+    "http://127.0.0.1:8000/api/files/verification" \
+    --header "Authorization: Basic {YOUR_AUTH_KEY}" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "file=@/tmp/phpkMkcoK" </code></pre></div>
+    --form "file=@/tmp/phpNzi6t6" </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/files/verification"
+    "http://127.0.0.1:8000/api/files/verification"
 );
 
 const headers = {
+    "Authorization": "Basic {YOUR_AUTH_KEY}",
     "Content-Type": "multipart/form-data",
     "Accept": "application/json",
 };
@@ -166,7 +173,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-files-verification" data-method="POST"
       data-path="api/files/verification"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="1"
       data-isarraybody="0"
       autocomplete="off"
@@ -196,6 +203,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b><code>api/files/verification</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-files-verification"
+               value="Basic {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Basic {YOUR_AUTH_KEY}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -228,7 +246,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. Must not be greater than 2048 kilobytes. Example: <code>/tmp/phpkMkcoK</code></p>
+<p>Must be a file. Must not be greater than 2048 kilobytes. Example: <code>/tmp/phpNzi6t6</code></p>
         </div>
         </form>
 
