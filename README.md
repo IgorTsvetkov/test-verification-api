@@ -26,7 +26,8 @@ APP_URL=http://127.0.0.1:8000
 If you updated the above variable please stop existing execution and use the next commands:
 1. `php artisan scribe:generate`
 2. `php artisan serve`
-[How to call api/files/verification](how-to-call-endpoint.png)
+
+[How to call api/files/verification SCREENSHOT](how-to-call-endpoint.png)
 
 # Structure
 
